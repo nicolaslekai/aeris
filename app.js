@@ -178,31 +178,50 @@ function renderTrend(state) {
    GAUGE
 ================================================================== */
 function gauge(pct, status) {
-  const W = 200, H = 118, cx = 100, cy = 108, r = 84;
+  const W = 200, H = 116, cx = 100, cy = 102, r = 82, SW = 12;
   const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, class: "gauge",
     role: "img", "aria-label": `Belegung ${pct}%` });
   const ang = (v) => Math.PI * (1 - v / 100);
   const pt = (v, rad) => [cx + rad * Math.cos(ang(v)), cy - rad * Math.sin(ang(v))];
-  const arc = (v0, v1, rad, color, wpx) => {
-    const [x0, y0] = pt(v0, rad), [x1, y1] = pt(v1, rad);
-    const large = (v1 - v0) > 50 ? 1 : 0;
-    return el("path", { d: `M ${x0} ${y0} A ${rad} ${rad} 0 ${large} 1 ${x1} ${y1}`,
-      fill: "none", stroke: color, "stroke-width": wpx });
+  // On a half-circle no segment ever exceeds 180°, so large-arc is always 0.
+  const arc = (v0, v1, color, wpx, cap = "butt") => {
+    const [x0, y0] = pt(v0, r), [x1, y1] = pt(v1, r);
+    return el("path", { d: `M ${x0} ${y0} A ${r} ${r} 0 0 1 ${x1} ${y1}`,
+      fill: "none", stroke: color, "stroke-width": wpx, "stroke-linecap": cap });
   };
-  svg.appendChild(arc(0, 70, r, "var(--normal-soft)", 13));
-  svg.appendChild(arc(70, 85, r, "var(--elevated-soft)", 13));
-  svg.appendChild(arc(85, 100, r, "var(--critical-soft)", 13));
-  svg.appendChild(arc(0, Math.max(0.5, pct), r, `var(--${status})`, 13));
 
-  const val = el("text", { x: cx, y: cy - 14, "text-anchor": "middle",
-    fill: `var(--${status})`, "font-size": 40, "font-weight": 700, "letter-spacing": "-1" });
+  // zone track (soft), with tiny gaps at the 70/85 thresholds
+  const GAP = 1.2;
+  svg.appendChild(arc(0, 70 - GAP, "var(--normal-soft)", SW));
+  svg.appendChild(arc(70 + GAP, 85 - GAP, "var(--elevated-soft)", SW));
+  svg.appendChild(arc(85 + GAP, 100, "var(--critical-soft)", SW));
+
+  // active fill up to the value, status-colored, rounded tip
+  svg.appendChild(arc(0, Math.max(1, Math.min(pct, 100)), `var(--${status})`, SW, "round"));
+
+  // marker dot on the arc at the value (replaces the needle)
+  const [mx, my] = pt(pct, r);
+  svg.appendChild(el("circle", { cx: mx, cy: my, r: 8.5, fill: "#fff",
+    stroke: `var(--${status})`, "stroke-width": 3 }));
+
+  // threshold labels at the dial ends
+  const [lx, ly] = pt(0, r - SW - 8);
+  const [rx2, ry2] = pt(100, r - SW - 8);
+  const endLab = (x, y, txt, anchor) => {
+    const t = el("text", { x, y: y + 4, "text-anchor": anchor,
+      fill: "var(--faint)", "font-size": 10, "font-weight": 600 });
+    t.textContent = txt;
+    return t;
+  };
+  svg.appendChild(endLab(lx + 2, ly, "0", "start"));
+  svg.appendChild(endLab(rx2 - 2, ry2, "100", "end"));
+
+  // centered value
+  const val = el("text", { x: cx, y: cy - 6, "text-anchor": "middle",
+    fill: `var(--${status})`, "font-size": 38, "font-weight": 700, "letter-spacing": "-1" });
   val.textContent = pct + "%";
   svg.appendChild(val);
 
-  const [nx, ny] = pt(pct, r - 20);
-  svg.appendChild(el("line", { x1: cx, y1: cy, x2: nx, y2: ny,
-    stroke: "var(--ink)", "stroke-width": 3.5, "stroke-linecap": "round" }));
-  svg.appendChild(el("circle", { cx, cy, r: 6, fill: "var(--ink)" }));
   return svg;
 }
 
