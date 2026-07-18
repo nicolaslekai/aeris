@@ -149,7 +149,9 @@ a { color: inherit; text-decoration: none; }
   font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 999px;
   white-space: nowrap;
 }
+.pill--normal { background: var(--normal-soft); color: #2f7a58; }
 .pill--elevated { background: var(--elevated-soft); color: #a5701a; }
+.pill--critical { background: var(--critical-soft); color: #b23a2e; }
 
 /* -------------------------------- Sections -------------------------------- */
 .section { padding: 76px 0; }

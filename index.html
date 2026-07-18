@@ -48,9 +48,9 @@
           <a href="#how" class="btn btn--ghost">Wie es funktioniert</a>
         </div>
         <div class="hero__stats">
-          <div><b>~400</b><span>Landkreise abgedeckt</span></div>
+          <div><b id="stat-regions">16</b><span>Bundesländer, live</span></div>
           <div><b>1–3&nbsp;Wo.</b><span>Vorlaufzeit</span></div>
-          <div><b>5</b><span>Frühindikatoren</span></div>
+          <div><b id="stat-national">–</b><span>Ø Belegung heute</span></div>
         </div>
       </div>
 
@@ -59,33 +59,17 @@
         <div class="minicard">
           <div class="minicard__head">
             <span class="dot dot--live"></span>
-            <span>München · Intensivbelegung</span>
-            <span class="minicard__as">Stand 21. Mär 2026</span>
+            <span id="hero-region">Intensivbelegung</span>
+            <span class="minicard__as" data-asof>Stand –</span>
           </div>
           <div class="minicard__big">
-            <span class="minicard__now">72<i>%</i></span>
-            <span class="pill pill--elevated">In 2 Wochen: 85% · Erhöht</span>
+            <span class="minicard__now"><span id="hero-now">–</span><i>%</i></span>
+            <span class="pill pill--elevated" id="hero-pill">–</span>
           </div>
-          <svg class="minicard__spark" viewBox="0 0 320 96" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.22"/>
-                <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path d="M0,70 L53,64 L107,58 L160,52 L160,52"
-                  fill="none" stroke="var(--ink-2)" stroke-width="2.5"
-                  stroke-linecap="round"/>
-            <path d="M160,52 L213,40 L267,26 L320,20"
-                  fill="none" stroke="var(--accent)" stroke-width="2.5"
-                  stroke-dasharray="2 6" stroke-linecap="round"/>
-            <path d="M160,52 L213,40 L267,26 L320,20 L320,96 L0,96 Z"
-                  fill="url(#heroFill)" opacity="0"/>
-            <circle cx="160" cy="52" r="4" fill="var(--ink)"/>
-            <circle cx="320" cy="20" r="4" fill="var(--accent)"/>
-          </svg>
+          <svg class="minicard__spark" id="heroSpark" viewBox="0 0 320 96"
+               preserveAspectRatio="none" aria-hidden="true"></svg>
           <div class="minicard__foot">
-            <span>40&nbsp;% Wahrscheinlichkeit, die kritische Kapazität zu überschreiten</span>
+            <span id="hero-foot">–</span>
           </div>
         </div>
       </figure>
@@ -157,8 +141,8 @@
         <li>
           <span class="steps__no">01</span>
           <h3>Zusammenführen</h3>
-          <p>Alle Quellen werden auf den Landkreis (Kreiskennziffer) ausgerichtet —
-             direkt oder über räumliche Aggregation.</p>
+          <p>Alle Quellen werden auf die Bundesland-Ebene ausgerichtet — die
+             Auflösung, in der die DIVI-Grundwahrheit aktuell verlässlich vorliegt.</p>
         </li>
         <li>
           <span class="steps__no">02</span>
@@ -206,7 +190,7 @@
       <div class="sources">
         <article class="source">
           <header><h3>DIVI-Intensivregister</h3><span class="tag tag--core">Grundwahrheit</span></header>
-          <p>Tägliche ITS-Belegung je Klinik, aggregiert auf Landkreisebene. Das Prognoseziel.</p>
+          <p>Tägliche ITS-Belegung je Klinik, aggregiert auf Landes- und Bundesebene. Das Prognoseziel.</p>
           <footer><span>RKI / DIVI</span><span>Täglich · API</span></footer>
         </article>
         <article class="source">
