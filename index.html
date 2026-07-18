@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aeris — Vorausschau für ein vorbereitetes Gesundheitssystem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================ TOP BAR ============================ -->
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="#top" aria-label="Aeris Startseite">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="26" height="26">
+            <path d="M4 20 L11 20 L14 11 L18 24 L21 16 L28 16"
+                  fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand__word"><strong>Aeris</strong><em>Health Foresight</em></span>
+      </a>
+      <nav class="nav">
+        <a href="#dashboard">Prognose</a>
+        <a href="#signals">Signale</a>
+        <a href="#how">Methodik</a>
+        <a href="#data">Daten</a>
+      </nav>
+      <a href="#dashboard" class="btn btn--primary btn--sm">Live-Prognose</a>
+    </div>
+  </header>
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" id="top">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <span class="eyebrow">Frühwarnung für die Versorgungsplanung</span>
+        <h1>Dem Engpass<br><span class="accent">eine Woche voraus.</span></h1>
+        <p class="lede">
+          Aeris prognostiziert die regionale Intensivbelegung 1–3&nbsp;Wochen im
+          Voraus — aus öffentlich verfügbaren Signalen. Damit Kliniken und
+          Gesundheitsämter planen, statt zu reagieren.
+        </p>
+        <div class="hero__cta">
+          <a href="#dashboard" class="btn btn--primary">Prognose ansehen</a>
+          <a href="#how" class="btn btn--ghost">Wie es funktioniert</a>
+        </div>
+        <div class="hero__stats">
+          <div><b>~400</b><span>Landkreise abgedeckt</span></div>
+          <div><b>1–3&nbsp;Wo.</b><span>Vorlaufzeit</span></div>
+          <div><b>5</b><span>Frühindikatoren</span></div>
+        </div>
+      </div>
+
+      <!-- Hero glass card: a quiet, confident preview of the forecast -->
+      <figure class="hero__card">
+        <div class="minicard">
+          <div class="minicard__head">
+            <span class="dot dot--live"></span>
+            <span>München · Intensivbelegung</span>
+            <span class="minicard__as">Stand 21. Mär 2026</span>
+          </div>
+          <div class="minicard__big">
+            <span class="minicard__now">72<i>%</i></span>
+            <span class="pill pill--elevated">In 2 Wochen: 85% · Erhöht</span>
+          </div>
+          <svg class="minicard__spark" viewBox="0 0 320 96" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,70 L53,64 L107,58 L160,52 L160,52"
+                  fill="none" stroke="var(--ink-2)" stroke-width="2.5"
+                  stroke-linecap="round"/>
+            <path d="M160,52 L213,40 L267,26 L320,20"
+                  fill="none" stroke="var(--accent)" stroke-width="2.5"
+                  stroke-dasharray="2 6" stroke-linecap="round"/>
+            <path d="M160,52 L213,40 L267,26 L320,20 L320,96 L0,96 Z"
+                  fill="url(#heroFill)" opacity="0"/>
+            <circle cx="160" cy="52" r="4" fill="var(--ink)"/>
+            <circle cx="320" cy="20" r="4" fill="var(--accent)"/>
+          </svg>
+          <div class="minicard__foot">
+            <span>40&nbsp;% Wahrscheinlichkeit, die kritische Kapazität zu überschreiten</span>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================ DASHBOARD ============================ -->
+  <section class="section" id="dashboard">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Live-Prognose</span>
+          <h2>Regionale ITS-Belegung, 3&nbsp;Wochen voraus</h2>
+        </div>
+        <label class="regionpick">
+          <span>Region</span>
+          <select id="regionSelect" aria-label="Region wählen"></select>
+        </label>
+      </div>
+
+      <!-- Context line -->
+      <p class="ctxline" id="ctxline"></p>
+
+      <!-- Primary trend chart -->
+      <div class="panel panel--hero">
+        <div class="panel__head">
+          <h3>Verlauf &amp; Prognose</h3>
+          <div class="legend">
+            <span class="legend__item"><i class="swatch swatch--obs"></i>Beobachtet</span>
+            <span class="legend__item"><i class="swatch swatch--fc"></i>Prognose</span>
+            <span class="legend__item"><i class="swatch swatch--band"></i>Unsicherheit</span>
+          </div>
+        </div>
+        <div id="trendChart" class="trend"></div>
+      </div>
+
+      <!-- Forecast cards with gauges -->
+      <div class="cards" id="forecastCards"></div>
+    </div>
+  </section>
+
+  <!-- ============================ SIGNALS ============================ -->
+  <section class="section section--tint" id="signals">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Frühindikatoren</span>
+          <h2>Welche Signale der Belegung vorauslaufen</h2>
+        </div>
+        <p class="section__note">
+          Gewichtung des Modells für die aktuelle Region. Jedes Signal ist
+          öffentlich verfügbar und auf Landkreisebene abbildbar.
+        </p>
+      </div>
+      <div class="signals" id="signalGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================ HOW IT WORKS ============================ -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Methodik</span>
+          <h2>Von Signalen zur belastbaren Vorausschau</h2>
+        </div>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="steps__no">01</span>
+          <h3>Zusammenführen</h3>
+          <p>Alle Quellen werden auf den Landkreis (Kreiskennziffer) ausgerichtet —
+             direkt oder über räumliche Aggregation.</p>
+        </li>
+        <li>
+          <span class="steps__no">02</span>
+          <h3>Modellieren</h3>
+          <p>Ein Zeitreihenmodell verknüpft die autoregressive Belegung mit den
+             Vorlaufsignalen entlang des Kausalpfads Virus → Erkrankung → ITS.</p>
+        </li>
+        <li>
+          <span class="steps__no">03</span>
+          <h3>Quantifizieren</h3>
+          <p>Jede Prognose kommt mit einem Unsicherheitsband und einer
+             Wahrscheinlichkeit, die kritische Kapazität zu überschreiten.</p>
+        </li>
+        <li>
+          <span class="steps__no">04</span>
+          <h3>Handeln</h3>
+          <p>Personalplanung, elektive Eingriffe, Verlegungen — Entscheidungen mit
+             Vorlauf statt in der Krise.</p>
+        </li>
+      </ol>
+
+      <!-- Causal pathway ribbon -->
+      <div class="pathway" aria-label="Kausalpfad">
+        <span>Viruszirkulation</span><i>→</i>
+        <span>Erkrankung in der Bevölkerung</span><i>→</i>
+        <span>Arztbesuch / Hospitalisierung</span><i>→</i>
+        <span class="pathway__end">ITS-Aufnahme</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ DATA SOURCES ============================ -->
+  <section class="section section--tint" id="data">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Datengrundlage</span>
+          <h2>Öffentlich, gepflegt, skalierbar</h2>
+        </div>
+        <p class="section__note">
+          Der MVP nutzt ausschließlich öffentlich verfügbare, gut gepflegte
+          Quellen — keine institutionellen Datenverträge nötig.
+        </p>
+      </div>
+      <div class="sources">
+        <article class="source">
+          <header><h3>DIVI-Intensivregister</h3><span class="tag tag--core">Grundwahrheit</span></header>
+          <p>Tägliche ITS-Belegung je Klinik, aggregiert auf Landkreisebene. Das Prognoseziel.</p>
+          <footer><span>RKI / DIVI</span><span>Täglich · API</span></footer>
+        </article>
+        <article class="source">
+          <header><h3>SARI-Hospitalisierung</h3><span class="tag tag--core">Essenziell</span></header>
+          <p>Schwere akute Atemwegsinfekte aus Sentinelkliniken. Stärkster mechanistischer Vorlauf.</p>
+          <footer><span>RKI · ICOSARI</span><span>Wöchentlich</span></footer>
+        </article>
+        <article class="source">
+          <header><h3>ARE-Konsultationen</h3><span class="tag">Hoch</span></header>
+          <p>Ambulante Atemwegserkrankungen beim Hausarzt — erfasst die Wellenform früh.</p>
+          <footer><span>RKI · AGI-Sentinel</span><span>Wöchentlich</span></footer>
+        </article>
+        <article class="source">
+          <header><h3>Wetter (Temperatur)</h3><span class="tag">Hoch</span></header>
+          <p>Tagestemperatur je Station. Kältewellen treiben Atemwegsspitzen, Hitze direkte ITS-Aufnahmen.</p>
+          <footer><span>DWD · Open Data</span><span>Täglich</span></footer>
+        </article>
+        <article class="source">
+          <header><h3>Kalenderfaktoren</h3><span class="tag">Hoch</span></header>
+          <p>Feiertage und Schulferien je Bundesland — vermeiden systematische Prognosefehler.</p>
+          <footer><span>Landeskalender</span><span>Statisch</span></footer>
+        </article>
+        <article class="source source--muted">
+          <header><h3>Abwasser-Monitoring</h3><span class="tag tag--soon">v1.1</span></header>
+          <p>Virale RNA läuft der Hospitalisierung 1–2 Wochen voraus — die wertvollste Erweiterung nach dem MVP.</p>
+          <footer><span>Umweltbundesamt · AMELAG</span><span>Geplant</span></footer>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA / FOOTER ============================ -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__brand">
+        <span class="brand__word"><strong>Aeris</strong><em>Health Foresight</em></span>
+        <p>Die Vorausschau-Schicht für Gesundheitssysteme — von reaktivem
+           Krisenmanagement zu proaktiver Planung.</p>
+      </div>
+      <div class="footer__cols">
+        <div>
+          <h4>Prognosen</h4>
+          <a href="#dashboard">ITS-Belegung</a>
+          <a href="#">Notaufnahme-Druck <span class="soon">bald</span></a>
+          <a href="#">Atemwegswellen <span class="soon">bald</span></a>
+          <a href="#">Hitzefolgen <span class="soon">bald</span></a>
+        </div>
+        <div>
+          <h4>Ebenen</h4>
+          <a href="#">Regional (Landkreis)</a>
+          <a href="#">Land (Bundesland)</a>
+          <a href="#">Klinik <span class="soon">bald</span></a>
+        </div>
+        <div>
+          <h4>Projekt</h4>
+          <a href="#how">Methodik</a>
+          <a href="#data">Datenquellen</a>
+          <a href="#">Kontakt</a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap footer__base">
+      <span>© 2026 Aeris · Prototyp</span>
+      <span>Alle Daten aus öffentlich verfügbaren Quellen · Illustrative Prognosewerte</span>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
