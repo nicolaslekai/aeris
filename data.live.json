@@ -2,6 +2,13 @@
  "generatedAt": "2026-07-18",
  "asOfLabel": "18. Juli 2026",
  "level": "Bundesland",
+ "model": {
+  "type": "HistGradientBoosting",
+  "trained": true,
+  "mae": 1.48,
+  "skill": 0.155,
+  "baselineMae": 1.75
+ },
  "states": [
   {
    "id": "01",
@@ -34,32 +41,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 84,
-     "lo": 79,
-     "hi": 89,
+     "pct": 85,
+     "lo": 82,
+     "hi": 87,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 83,
-     "lo": 74,
-     "hi": 92,
+     "pct": 85,
+     "lo": 81,
+     "hi": 88,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 82,
-     "lo": 69,
-     "hi": 95,
-     "confidence": "Niedrig"
+     "pct": 85,
+     "lo": 81,
+     "hi": 88,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.37,
-    0.36,
-    0.35
+    0.47,
+    0.45,
+    0.5
    ],
    "baseline": [
     86,
@@ -180,31 +187,31 @@
      "week": 1,
      "range": "20.–26. Jul",
      "pct": 83,
-     "lo": 78,
-     "hi": 88,
+     "lo": 80,
+     "hi": 86,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
      "pct": 83,
-     "lo": 75,
-     "hi": 91,
+     "lo": 80,
+     "hi": 86,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 82,
-     "lo": 70,
-     "hi": 94,
-     "confidence": "Niedrig"
+     "pct": 83,
+     "lo": 80,
+     "hi": 86,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.26,
-    0.34,
-    0.34
+    0.16,
+    0.18,
+    0.23
    ],
    "baseline": [
     84,
@@ -351,32 +358,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 75,
-     "lo": 70,
-     "hi": 80,
+     "pct": 80,
+     "lo": 77,
+     "hi": 83,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 74,
-     "lo": 65,
+     "pct": 81,
+     "lo": 77,
      "hi": 83,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 73,
-     "lo": 60,
-     "hi": 86,
-     "confidence": "Niedrig"
+     "pct": 81,
+     "lo": 77,
+     "hi": 84,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.0,
-    0.02,
-    0.06
+    0.01,
+    0.01,
+    0.03
    ],
    "baseline": [
     77,
@@ -524,31 +531,31 @@
      "week": 1,
      "range": "20.–26. Jul",
      "pct": 94,
-     "lo": 89,
-     "hi": 99,
+     "lo": 91,
+     "hi": 96,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
      "pct": 93,
-     "lo": 84,
-     "hi": 100,
+     "lo": 90,
+     "hi": 96,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 92,
-     "lo": 79,
-     "hi": 100,
-     "confidence": "Niedrig"
+     "pct": 94,
+     "lo": 90,
+     "hi": 97,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
     1.0,
-    0.95,
-    0.86
+    1.0,
+    1.0
    ],
    "baseline": [
     96,
@@ -695,32 +702,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 81,
-     "lo": 76,
+     "pct": 83,
+     "lo": 80,
      "hi": 86,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 80,
-     "lo": 71,
-     "hi": 89,
+     "pct": 83,
+     "lo": 80,
+     "hi": 86,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 79,
-     "lo": 66,
-     "hi": 92,
-     "confidence": "Niedrig"
+     "pct": 83,
+     "lo": 80,
+     "hi": 86,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.09,
-    0.18,
-    0.22
+    0.15,
+    0.17,
+    0.23
    ],
    "baseline": [
     82,
@@ -867,32 +874,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 86,
-     "lo": 81,
-     "hi": 91,
+     "pct": 87,
+     "lo": 84,
+     "hi": 89,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 85,
-     "lo": 76,
-     "hi": 94,
+     "pct": 87,
+     "lo": 83,
+     "hi": 90,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 85,
-     "lo": 73,
-     "hi": 97,
-     "confidence": "Niedrig"
+     "pct": 87,
+     "lo": 83,
+     "hi": 90,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.63,
-    0.5,
-    0.5
+    0.85,
+    0.81,
+    0.82
    ],
    "baseline": [
     87,
@@ -1012,32 +1019,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 79,
-     "lo": 73,
+     "pct": 82,
+     "lo": 79,
      "hi": 85,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 78,
-     "lo": 67,
-     "hi": 89,
-     "confidence": "Niedrig"
+     "pct": 82,
+     "lo": 79,
+     "hi": 85,
+     "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 78,
-     "lo": 63,
-     "hi": 93,
-     "confidence": "Niedrig"
+     "pct": 82,
+     "lo": 79,
+     "hi": 85,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.05,
-    0.15,
-    0.22
+    0.07,
+    0.09,
+    0.09
    ],
    "baseline": [
     80,
@@ -1184,32 +1191,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 82,
-     "lo": 77,
-     "hi": 87,
+     "pct": 83,
+     "lo": 80,
+     "hi": 85,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 81,
-     "lo": 72,
-     "hi": 90,
+     "pct": 83,
+     "lo": 79,
+     "hi": 85,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 81,
-     "lo": 69,
-     "hi": 93,
-     "confidence": "Niedrig"
+     "pct": 83,
+     "lo": 79,
+     "hi": 86,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.16,
-    0.23,
-    0.29
+    0.1,
+    0.11,
+    0.14
    ],
    "baseline": [
     83,
@@ -1322,32 +1329,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 84,
-     "lo": 79,
-     "hi": 89,
+     "pct": 85,
+     "lo": 82,
+     "hi": 87,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
      "pct": 84,
-     "lo": 76,
-     "hi": 92,
+     "lo": 81,
+     "hi": 87,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
      "pct": 84,
-     "lo": 72,
-     "hi": 96,
-     "confidence": "Niedrig"
+     "lo": 81,
+     "hi": 87,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.37,
-    0.42,
-    0.45
+    0.43,
+    0.39,
+    0.4
    ],
    "baseline": [
     85,
@@ -1467,32 +1474,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 80,
-     "lo": 73,
-     "hi": 87,
-     "confidence": "Mittel"
+     "pct": 83,
+     "lo": 80,
+     "hi": 86,
+     "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 79,
-     "lo": 68,
-     "hi": 90,
-     "confidence": "Niedrig"
+     "pct": 84,
+     "lo": 80,
+     "hi": 86,
+     "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 78,
-     "lo": 62,
-     "hi": 94,
-     "confidence": "Niedrig"
+     "pct": 84,
+     "lo": 80,
+     "hi": 87,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.12,
-    0.18,
-    0.24
+    0.19,
+    0.26,
+    0.27
    ],
    "baseline": [
     82,
@@ -1639,32 +1646,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 86,
+     "pct": 84,
      "lo": 81,
-     "hi": 91,
+     "hi": 86,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 86,
-     "lo": 77,
-     "hi": 95,
+     "pct": 84,
+     "lo": 80,
+     "hi": 87,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 86,
-     "lo": 73,
-     "hi": 99,
-     "confidence": "Niedrig"
+     "pct": 83,
+     "lo": 80,
+     "hi": 86,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.63,
-    0.57,
-    0.55
+    0.28,
+    0.27,
+    0.22
    ],
    "baseline": [
     86,
@@ -1812,31 +1819,31 @@
      "week": 1,
      "range": "20.–26. Jul",
      "pct": 77,
-     "lo": 71,
-     "hi": 83,
+     "lo": 74,
+     "hi": 79,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
      "pct": 77,
-     "lo": 66,
-     "hi": 88,
-     "confidence": "Niedrig"
+     "lo": 73,
+     "hi": 79,
+     "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 76,
-     "lo": 61,
-     "hi": 91,
-     "confidence": "Niedrig"
+     "pct": 77,
+     "lo": 73,
+     "hi": 80,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.01,
-    0.12,
-    0.16
+    0.0,
+    0.0,
+    0.0
    ],
    "baseline": [
     78,
@@ -1983,32 +1990,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 83,
-     "lo": 78,
-     "hi": 88,
+     "pct": 82,
+     "lo": 79,
+     "hi": 85,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 83,
-     "lo": 73,
-     "hi": 93,
+     "pct": 82,
+     "lo": 79,
+     "hi": 85,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
      "pct": 83,
-     "lo": 69,
-     "hi": 97,
-     "confidence": "Niedrig"
+     "lo": 79,
+     "hi": 86,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.26,
-    0.37,
-    0.41
+    0.08,
+    0.09,
+    0.12
    ],
    "baseline": [
     82,
@@ -2156,31 +2163,31 @@
      "week": 1,
      "range": "20.–26. Jul",
      "pct": 81,
-     "lo": 76,
-     "hi": 86,
+     "lo": 78,
+     "hi": 84,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 82,
-     "lo": 73,
-     "hi": 91,
+     "pct": 81,
+     "lo": 78,
+     "hi": 84,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 82,
-     "lo": 69,
-     "hi": 95,
-     "confidence": "Niedrig"
+     "pct": 81,
+     "lo": 78,
+     "hi": 84,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.09,
-    0.29,
-    0.35
+    0.02,
+    0.03,
+    0.04
    ],
    "baseline": [
     81,
@@ -2327,32 +2334,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 80,
-     "lo": 75,
-     "hi": 85,
+     "pct": 82,
+     "lo": 79,
+     "hi": 84,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 79,
-     "lo": 70,
-     "hi": 88,
+     "pct": 81,
+     "lo": 78,
+     "hi": 84,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 79,
-     "lo": 66,
-     "hi": 92,
-     "confidence": "Niedrig"
+     "pct": 82,
+     "lo": 78,
+     "hi": 85,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.05,
-    0.14,
-    0.22
+    0.03,
+    0.04,
+    0.07
    ],
    "baseline": [
     81,
@@ -2499,32 +2506,32 @@
     {
      "week": 1,
      "range": "20.–26. Jul",
-     "pct": 79,
-     "lo": 74,
-     "hi": 84,
+     "pct": 80,
+     "lo": 77,
+     "hi": 82,
      "confidence": "Hoch"
     },
     {
      "week": 2,
      "range": "27. Jul–2. Aug",
-     "pct": 79,
-     "lo": 70,
-     "hi": 88,
+     "pct": 80,
+     "lo": 76,
+     "hi": 83,
      "confidence": "Mittel"
     },
     {
      "week": 3,
      "range": "3.–9. Aug",
-     "pct": 78,
-     "lo": 65,
-     "hi": 91,
-     "confidence": "Niedrig"
+     "pct": 80,
+     "lo": 77,
+     "hi": 83,
+     "confidence": "Mittel"
     }
    ],
    "pCritical": [
-    0.02,
-    0.14,
-    0.19
+    0.0,
+    0.01,
+    0.01
    ],
    "baseline": [
     80,
@@ -2637,7 +2644,7 @@
  "strip": [
   {
    "name": "Schleswig-Holstein",
-   "pct": 84
+   "pct": 85
   },
   {
    "name": "Hamburg",
@@ -2645,7 +2652,7 @@
   },
   {
    "name": "Niedersachsen",
-   "pct": 75
+   "pct": 80
   },
   {
    "name": "Bremen",
@@ -2653,31 +2660,31 @@
   },
   {
    "name": "Nordrhein-Westfalen",
-   "pct": 81
+   "pct": 83
   },
   {
    "name": "Hessen",
-   "pct": 86
+   "pct": 87
   },
   {
    "name": "Rheinland-Pfalz",
-   "pct": 79
-  },
-  {
-   "name": "Baden-Württemberg",
    "pct": 82
   },
   {
+   "name": "Baden-Württemberg",
+   "pct": 83
+  },
+  {
    "name": "Bayern",
-   "pct": 84
+   "pct": 85
   },
   {
    "name": "Saarland",
-   "pct": 80
+   "pct": 83
   },
   {
    "name": "Berlin",
-   "pct": 86
+   "pct": 84
   },
   {
    "name": "Brandenburg",
@@ -2685,7 +2692,7 @@
   },
   {
    "name": "Mecklenburg-Vorpommern",
-   "pct": 83
+   "pct": 82
   },
   {
    "name": "Sachsen",
@@ -2693,11 +2700,11 @@
   },
   {
    "name": "Sachsen-Anhalt",
-   "pct": 80
+   "pct": 82
   },
   {
    "name": "Thüringen",
-   "pct": 79
+   "pct": 80
   }
  ],
  "sources": [

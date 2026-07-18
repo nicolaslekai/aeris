@@ -25,12 +25,22 @@ Run:  python3 pipeline/build_data.py
 import io
 import json
 import math
+import pickle
 import statistics
 import sys
 import urllib.request
 import zipfile
 from collections import defaultdict
 from datetime import date, datetime, timedelta
+
+# Trained model (optional): if pipeline/model.pkl exists, live forecasts use it
+# instead of the heuristic tilt. Produced by train_model.py.
+try:
+    from features import make_features
+    with open(f"{sys.path[0]}/model.pkl", "rb") as _fh:
+        MODEL = pickle.load(_fh)
+except Exception:  # noqa: BLE001
+    MODEL = None
 
 RAW = "https://raw.githubusercontent.com/robert-koch-institut"
 DIVI = f"{RAW}/Intensivkapazitaeten_und_COVID-19-Intensivbettenbelegung_in_Deutschland/main/Intensivregister_Bundeslaender_Kapazitaeten.csv"
@@ -332,6 +342,34 @@ def forecast_state(occ_weeks, are_vals, sari_vals, temp, holiday):
             "pCritical": pcrit, "baseline": baseline}
 
 
+def model_forecast(occ_weeks, are_vals, sari_vals, sid):
+    """Trained-model forecast for one state. Returns the same dict shape as
+    forecast_state(), or None if the model can't produce a row."""
+    import pandas as pd
+    occ = [p for _, p in occ_weeks]
+    current = occ[-1]
+    resid = MODEL["resid_q"]
+    horizon, pcrit = [], []
+    for k in range(3):
+        h = k + 1
+        tgt_woy = (TODAY + timedelta(days=7 * h)).isocalendar()[1]
+        feat = make_features(occ, are_vals, sari_vals, tgt_woy, h, sid)
+        if feat is None:
+            return None
+        row = pd.DataFrame([feat])[MODEL["feature_cols"]]
+        pred = float(MODEL["model"].predict(row)[0])
+        rq = resid[h]
+        lo = _clamp(pred - rq["p95"]); hi = _clamp(pred - rq["p05"])
+        pct = int(round(_clamp(pred)))
+        sd = max(1.0, rq["sd"])
+        conf = "Hoch" if (hi - lo) <= 6 else ("Mittel" if (hi - lo) <= 11 else "Niedrig")
+        horizon.append({"week": h, "range": _week_range(h), "pct": pct,
+                        "lo": int(round(lo)), "hi": int(round(hi)), "confidence": conf})
+        pcrit.append(normal_p_above(85, pred, sd))
+    return {"current": round(current, 1), "horizon": horizon,
+            "pCritical": pcrit, "baseline": [int(round(current))] * 3}
+
+
 def _clamp(v, lo=15.0, hi=100.0):
     return max(lo, min(hi, v))
 
@@ -369,7 +407,11 @@ def build():
         temp = dwd.get(DWD_NAME[sid])
         holiday = hol.get(sid, {})
 
-        fc = forecast_state(occ_weeks, are_vals, sari_recent, temp, holiday)
+        fc = None
+        if MODEL is not None:
+            fc = model_forecast(occ_weeks, are_vals, sari_recent, sid)
+        if fc is None:
+            fc = forecast_state(occ_weeks, are_vals, sari_recent, temp, holiday)
 
         signals = _signals(occ_weeks, are_vals, are.get(name, {}), sari_recent,
                            sari_delta, temp, holiday)
@@ -386,10 +428,22 @@ def build():
     # national strip for the overview
     strip = [{"name": s["name"], "pct": s["horizon"][0]["pct"]} for s in states_out]
 
+    model_info = {"type": "Persistenz + Signal-Tilt (Heuristik)", "trained": False}
+    if MODEL is not None:
+        try:
+            mm = json.load(open(f"{sys.path[0]}/model_metrics.json"))
+            model_info = {"type": MODEL["name"], "trained": True,
+                          "mae": mm["results"][mm["winner"]]["mae"],
+                          "skill": mm["results"][mm["winner"]]["skill_vs_persistence"],
+                          "baselineMae": mm["baseline_mae"]}
+        except Exception:  # noqa: BLE001
+            model_info = {"type": MODEL["name"], "trained": True}
+
     payload = {
         "generatedAt": TODAY.isoformat(),
         "asOfLabel": TODAY.strftime("%d. %B %Y").replace("July", "Juli"),
         "level": "Bundesland",
+        "model": model_info,
         "states": states_out,
         "strip": strip,
         "sources": _source_meta(dwd),

@@ -1,0 +1,38 @@
+{
+ "winner": "HistGradientBoosting",
+ "baseline_mae": 1.75,
+ "results": {
+  "ElasticNet": {
+   "mae": 1.56,
+   "rmse": 2.12,
+   "skill_vs_persistence": 0.113,
+   "mae_by_h": {
+    "1": 1.38,
+    "2": 1.58,
+    "3": 1.71
+   }
+  },
+  "HistGradientBoosting": {
+   "mae": 1.48,
+   "rmse": 2.02,
+   "skill_vs_persistence": 0.155,
+   "mae_by_h": {
+    "1": 1.35,
+    "2": 1.5,
+    "3": 1.59
+   }
+  },
+  "MLP": {
+   "mae": 1.6,
+   "rmse": 2.2,
+   "skill_vs_persistence": 0.086,
+   "mae_by_h": {
+    "1": 1.47,
+    "2": 1.61,
+    "3": 1.73
+   }
+  }
+ },
+ "test_weeks": 52,
+ "n_examples": 15600
+}

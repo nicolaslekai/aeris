@@ -173,8 +173,12 @@ a { color: inherit; text-decoration: none; }
 }
 .regionpick select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 
-.ctxline { font-size: 15px; color: var(--ink-2); margin: -14px 0 26px; }
+.ctxline { font-size: 15px; color: var(--ink-2); margin: -14px 0 8px; }
 .ctxline b { color: var(--ink); font-weight: 600; }
+.modelnote { font-size: 12.5px; color: var(--muted); margin: 0 0 26px;
+  display: flex; align-items: center; gap: 8px; }
+.modelnote .chip { font-size: 11px; font-weight: 700; letter-spacing: .3px;
+  padding: 3px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-d); }
 
 /* -------------------------------- Panels -------------------------------- */
 .panel {

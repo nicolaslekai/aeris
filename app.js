@@ -61,6 +61,17 @@ async function boot() {
   setText("stat-regions", PAYLOAD.states.length);
   setText("stat-national", nAvg + "%");
 
+  // model badge
+  const mb = document.getElementById("modelBadge");
+  const m = PAYLOAD.model;
+  if (mb && m) {
+    mb.innerHTML = m.trained
+      ? `<span class="chip">Modell: ${m.type}</span> trainiert auf ${PAYLOAD.level}-Historie 2020–2026 · `
+        + `MAE ${String(m.mae).replace(".", ",")}&nbsp;%-Punkte · `
+        + `<b style="color:var(--accent-d)">${Math.round(m.skill * 100)}%</b> genauer als die Persistenz-Basislinie`
+      : `<span class="chip">Modell: ${m.type}</span>`;
+  }
+
   render();
 }
 
